@@ -17,22 +17,22 @@
 	</nav>
 
 	<div class="row" id="painel">
-		<form class="col s4">
+		<form class="col s4" method="POST" action="/titulos">
 			<div class="row">
 				<div class="input-field">
-					<input id="primeiro" type="text" class="validate" /><label
+					<input id="primeiro" type="text" class="validate" name="descricao"/><label
 						for="primeiro">Descrição</label>
 				</div>
 				<div class="input-field">
-					<input id="segundo" type="text" class="validate" /> <label
+					<input id="segundo" type="text" class="validate" name="dataVencimento"/> <label
 						for="segundo">Data de Vencimento</label>
 				</div>
 				<div class="input-field ">
-					<input class="validade" id="data" type="text" /> <label for="data">Valor</label>
+					<input class="validade" id="data" type="text" name="valor"/> <label for="data">Valor</label>
 				</div>
 				
 				<div class="input-field">
-					<select>
+					<select name="status">
 						<option value="PENDENTE">Pendente</option>
 						<option value="RECEBIDO">Recebido</option>
 					</select>
@@ -41,10 +41,6 @@
 			<input class="btn" type="submit" name="action" value="Enviar"/>
 		</form>
 	</div>
-
-
-
-
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="/js/materialize.min.js"></script>
 
