@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" type="text/css" href="/css/materialize.min.css" />
+<link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css" href="/css/stilo.css" />
+<title>Cadastro de Títulos</title>
+</head>
+<body>
+	<nav>
+		<div class="nav-wrapper">
+			<a href="#" class="brand-logo">
+				<img id="im" alt="alga" src="/img/logo.png" />
+			</a>
+		</div>
+	</nav>
+
+	<div class="row" id="painel">
+		<form class="col s4">
+			<div class="row">
+				<div class="input-field">
+					<input id="primeiro" type="text" class="validate" /><label
+						for="primeiro">Descrição</label>
+				</div>
+				<div class="input-field">
+					<input id="segundo" type="text" class="validate" /> <label
+						for="segundo">Data de Vencimento</label>
+				</div>
+				<div class="input-field ">
+					<input class="validade" id="data" type="text" /> <label for="data">Valor</label>
+				</div>
+				
+				<div class="input-field">
+					<select>
+						<option value="PENDENTE">Pendente</option>
+						<option value="RECEBIDO">Recebido</option>
+					</select>
+				</div>
+			</div>
+			<input class="btn" type="submit" name="action" value="Enviar"/>
+		</form>
+	</div>
+
+
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="/js/materialize.min.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+window.onload=function(){
+$(document).ready(function() {
+    $('select').material_select();
+});
+}//]]> 
+</script>
+
+</body>
+</html>
