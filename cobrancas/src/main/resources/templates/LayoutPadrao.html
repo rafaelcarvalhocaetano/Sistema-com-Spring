@@ -9,15 +9,10 @@
 <link rel="stylesheet" type="text/css" href="/css/stile.css" />
 </head>
 <body>
-	<nav class="navbar navbar-inverse navbar-static-top">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#"> <img alt="AlgaWorks"
-					src="/images/logo.png" />
-				</a>
-			</div>
-		</div>
-	</nav>
+	<!-- Manda para as paginas que chamam o Layout o NAVBAR -->
+	<header layout:include="Cabecalho"></header>
+	
+	<!-- Exibe o conteúdo de outra página nesta SECTION -->
 	<section layout:fragment="conteudo">
 		<p>Conteudo Principal</p>
 	</section>
