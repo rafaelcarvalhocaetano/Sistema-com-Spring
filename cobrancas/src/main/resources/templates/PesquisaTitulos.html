@@ -31,8 +31,20 @@
 				</tr>
 			</thead>
 			<tbody>
+				<tr th:each="titulo : ${titulos}">
+					<td class="text-center" th:text="${titulo.codigo}"></td>
+					<td class="text-center" th:text="${titulo.descricao}"></td>
+					<td class="text-center" th:text="${{titulo.dataVencimento}}"></td><!-- Colocando ASPAS DUPLA o thymeleaf faz a formatação da mascara -->
+					<td class="text-right col-md-2" th:text="|R$ ${{titulo.valor}}|"></td> <!-- Colocando o || ele vai receber uma concatenação -->
+					<td class="text-center" >
+						<span class="label label-sucess" th:text="${titulo.status.descricao}">Sucess</span>
+					</td>
+					<td class="text-center">
+					
+					</td>
+				</tr>
 				<tr>
-					<td colspan="6">Nenhum título encontrado</td>
+					<td colspan="6" th:if="${#lists.isEmpty(titulos)}">Nenhum título encontrado</td>
 				</tr>
 			</tbody>
 		</table>
