@@ -37,7 +37,8 @@
 					<td class="text-center" th:text="${{titulo.dataVencimento}}"></td><!-- Colocando ASPAS DUPLA o thymeleaf faz a formatação da mascara -->
 					<td class="text-right col-md-2" th:text="|R$ ${{titulo.valor}}|"></td> <!-- Colocando o || ele vai receber uma concatenação -->
 					<td class="text-center" >
-						<span class="label label-sucess" th:text="${titulo.status.descricao}">Sucess</span>
+						<span class="label" th:text="${titulo.status.descricao}"
+							th:classappend="${titulo.pendente ? 'label-danger' : 'label-success'}"></span>
 					</td>
 					<td class="text-center">
 					
