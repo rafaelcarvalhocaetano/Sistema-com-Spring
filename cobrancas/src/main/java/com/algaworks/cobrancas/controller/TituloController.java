@@ -1,7 +1,11 @@
 package com.algaworks.cobrancas.controller;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -27,8 +31,7 @@ public class TituloController {
 	@RequestMapping("/novo")
 	public ModelAndView novo(){
 		ModelAndView mv = new ModelAndView("CadastroTitulo");
-		mv.addObject("todoStatusTitulo",StatusTitulo.values());
-		
+		//mv.addObject("todoStatusTitulo",StatusTitulo.values());
 		return mv;
 	}
 	
@@ -36,12 +39,22 @@ public class TituloController {
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView salvar(Titulo titulo) {
 		
-		System.out.println("Salvo com sucesso "+titulo.getCodigo());
+		System.out.println("Salvo com sucesso "+titulo.getDescricao());
 		titulos.save(titulo);
 		ModelAndView mv = new ModelAndView("CadastroTitulo"); //chama a pagina CadastroTitulo através do mv
 		mv.addObject("mensagem","Título salvo com sucesso"); //cria a variavel mensagem que está no html através do themeleaf
 		
 		return mv;
+	}
+	
+	@ModelAttribute("todoStatusTitulo")
+	public List<StatusTitulo> todosTitulos(){
+		return Arrays.asList(StatusTitulo.values());
+		/*
+		 *Este método chama todos os atributos do enum sem a necessidade de duplicar o código no ModelAndView
+		 *@ModelAttribute serve para dar um nome ao metodo ao ser chamado no html ou melhor no thymeleaf 
+		 * 
+		*/
 	}
 
 }
