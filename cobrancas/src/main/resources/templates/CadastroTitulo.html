@@ -21,7 +21,11 @@
     <form class="form-horizontal" method="POST" action="/titulos">
     
     	<div class="alert alert-success" role="alert" th:if="${!#strings.isEmpty(mensagem)}">
-    		 <span>Título salvo com sucesso</span>
+    		 <span th:text="${mensagem}">Título salvo com sucesso!!!!</span>
+    		 <!-- 
+    		 	th:text é do thymeleaf com chama uma variavel do java para o html
+    		 	th:if é uma condição if else do thymeleaf para apresentar uma mensagem ou algo no html
+    		  -->
     	</div>
     
     
