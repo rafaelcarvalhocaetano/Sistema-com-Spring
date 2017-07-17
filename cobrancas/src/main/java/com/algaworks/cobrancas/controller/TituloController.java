@@ -1,16 +1,23 @@
 package com.algaworks.cobrancas.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 
+
+
 import com.algaworks.cobrancas.model.Titulo;
+import com.algaworks.cobrancas.repository.Titulos;
 
 	
 @Controller
 @RequestMapping("/titulos")
 public class TituloController {
+	
+	@Autowired
+	private Titulos titulos;
 
 	
 	//@RequestMapping("/titulos/novo") --> após ter adicionado o /titulos
@@ -24,6 +31,7 @@ public class TituloController {
 	public String salvar(Titulo titulo) {
 		System.out.println(">>> " + titulo.getDescricao());
 		
+		titulos.save(titulo);
 		return "CadastroTitulo";
 	}
 
