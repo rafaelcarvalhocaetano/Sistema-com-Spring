@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import org.springframework.web.servlet.ModelAndView;
 
+import com.algaworks.cobrancas.model.StatusTitulo;
 import com.algaworks.cobrancas.model.Titulo;
 import com.algaworks.cobrancas.repository.Titulos;
 
@@ -24,8 +25,11 @@ public class TituloController {
 	
 	//@RequestMapping("/titulos/novo") --> após ter adicionado o /titulos
 	@RequestMapping("/novo")
-	public String novo(){
-		return "CadastroTitulo";
+	public ModelAndView novo(){
+		ModelAndView mv = new ModelAndView("CadastroTitulo");
+		mv.addObject("todoStatusTitulo",StatusTitulo.values());
+		
+		return mv;
 	}
 	
 	//@RequestMapping(value = "/titulos", method= RequestMethod.POST) --> após ter adicionado o /titulos
