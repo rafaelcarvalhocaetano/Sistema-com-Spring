@@ -9,18 +9,10 @@
 </head>
 <section layout:fragment="conteudo">
 	<form class="form-horizontal" method="POST" action="/titulos" th:object="${titulo}">
-		<div class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
-			<span th:text="${mensagem}">Título salvo com sucesso!!!!</span>
-			<!-- 
-    		 	th:text é do thymeleaf com chama uma variavel do java para o html
-    		 	th:if é uma condição if else do thymeleaf para apresentar uma mensagem ou algo no html
-    		  -->
-		</div>
-		<div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
-			<div th:each="detailedErrors : ${#fields.detailedErrors()}">
-				<span th:text="${detailedErrors.message}"></span>
-			</div>
-		</div>
+		
+		<!-- Incluindo as mensagem que estão no arquivo Mensagem.html -->
+		<div layout:include="Mensagens"></div>
+		
 		<div class="panel panel-default">
     		<div class="panel-heading">
     			<div class="clearfix">

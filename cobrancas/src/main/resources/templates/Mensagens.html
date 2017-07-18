@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+
+<!-- 
+    th:text é do thymeleaf com chama uma variavel do java para o html
+    th:if é uma condição if else do thymeleaf para apresentar uma mensagem ou algo no html
+-->
+<div class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
+	<span th:text="${mensagem}">Título salvo com sucesso!!!!</span>
+</div>
+
+
+<!-- 
+	th:if="${#fields.hasAnyErrors()}"  chama uma classe utilitária do thymeleaf que verificar se á erros
+	th:each="detailedErrors : ${#fields.detailedErrors()}" cria-se um for com each de nome detailedErrors que percorre ${#fields.detailedErrors()}
+	th:text = Exibe a variavel de erro
+ -->
+<div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
+	<div th:each="detailedErrors : ${#fields.detailedErrors()}">
+		<span th:text="${detailedErrors.message}"></span>
+	</div>
+</div>
+
+
+</html>
