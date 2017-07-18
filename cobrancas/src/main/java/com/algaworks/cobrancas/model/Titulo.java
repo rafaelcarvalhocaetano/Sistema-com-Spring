@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -37,6 +38,7 @@ public class Titulo {
 	
 	@NotNull(message = "Valor é obrigatório") //anotação do Bean Validation - informa que o atributo é obrigatório para o banco de dados
 	@DecimalMin(value = "0.01", message = "O valor não pode ser menor que 0.01 centávos")
+	@DecimalMax(value = "9999.99", message = "O valor não pode ser maior que 10.000,00")
 	@NumberFormat(pattern = "#,##0.00")
 	private BigDecimal valor;
 	
