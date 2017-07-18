@@ -8,8 +8,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
@@ -23,13 +26,17 @@ public class Titulo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 	
+	@NotEmpty(message = "Descrição é obrigatória")
+	@Size(max = 60, message = "A mensagem não pode conter mais que 60 letras")
 	private String descricao;
 	
+	@NotNull(message = "Data de Vencimento é obrigatório")
 	@DateTimeFormat(pattern = "dd/MM/yyy")
 	@Temporal(TemporalType.DATE)
 	private Date dataVencimento;
 	
-	@NotNull(message = "Valor não pode ser nulo") //anotação do Bean Validation - informa que o atributo é obrigatório para o banco de dados
+	@NotNull(message = "Valor é obrigatório") //anotação do Bean Validation - informa que o atributo é obrigatório para o banco de dados
+	@DecimalMin(value = "0.01", message = "O valor não pode ser menor que 0.01 centávos")
 	@NumberFormat(pattern = "#,##0.00")
 	private BigDecimal valor;
 	
