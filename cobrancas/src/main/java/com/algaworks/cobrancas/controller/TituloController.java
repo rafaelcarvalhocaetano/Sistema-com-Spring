@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,16 +34,19 @@ public class TituloController {
 	public ModelAndView novo(){
 		ModelAndView mv = new ModelAndView("CadastroTitulo");
 		//mv.addObject("todoStatusTitulo",StatusTitulo.values());
+		mv.addObject(new Titulo());
 		return mv;
 	}
 	
 	//@RequestMapping(value = "/titulos", method= RequestMethod.POST) --> após ter adicionado o /titulos
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView salvar(Titulo titulo) {
-		
-		System.out.println("Salvo com sucesso "+titulo.getDescricao());
-		titulos.save(titulo);
+	public ModelAndView salvar(@Validated Titulo titulo, Errors errors) { //O @Validated exige o preenchimento do campo
 		ModelAndView mv = new ModelAndView("CadastroTitulo"); //chama a pagina CadastroTitulo através do mv
+		if(errors.hasErrors()){
+			return mv;
+		}
+		//System.out.println("Salvo com sucesso "+titulo.getDescricao());
+		titulos.save(titulo);
 		mv.addObject("mensagem","Título salvo com sucesso"); //cria a variavel mensagem que está no html através do themeleaf
 		
 		return mv;
