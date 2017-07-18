@@ -17,9 +17,9 @@
     		  -->
 		</div>
 		<div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
-			<div th:each="${#fields.detailedErrors}">
+			<div th:each="detailedErrors : ${#fields.detailedErrors()}">
+				<span th:text="${detailedErrors.message}"></span>
 			</div>
-			<span th:text="${detailedError.message}"></span>
 		</div>
 		<div class="panel panel-default">
     		<div class="panel-heading">

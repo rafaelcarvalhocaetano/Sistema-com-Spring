@@ -29,7 +29,7 @@ public class Titulo {
 	@Temporal(TemporalType.DATE)
 	private Date dataVencimento;
 	
-	@NotNull //anotação do Bean Validation - informa que o atributo é obrigatório para o banco de dados
+	@NotNull(message = "Valor não pode ser nulo") //anotação do Bean Validation - informa que o atributo é obrigatório para o banco de dados
 	@NumberFormat(pattern = "#,##0.00")
 	private BigDecimal valor;
 	
