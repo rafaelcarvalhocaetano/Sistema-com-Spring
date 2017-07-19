@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -26,6 +27,8 @@ import com.algaworks.cobrancas.repository.Titulos;
 @RequestMapping("/titulos")
 public class TituloController {
 	
+	private static final String CADASTRO_VIEW = "CadastroTitulo";
+	
 	@Autowired
 	private Titulos titulos;
 
@@ -33,7 +36,7 @@ public class TituloController {
 	//@RequestMapping("/titulos/novo") --> após ter adicionado o /titulos
 	@RequestMapping("/novo")
 	public ModelAndView novo(){
-		ModelAndView mv = new ModelAndView("CadastroTitulo");
+		ModelAndView mv = new ModelAndView(CADASTRO_VIEW);
 		//mv.addObject("todoStatusTitulo",StatusTitulo.values());
 		mv.addObject(new Titulo());
 		return mv;
@@ -41,16 +44,23 @@ public class TituloController {
 	
 	//@RequestMapping(value = "/titulos", method= RequestMethod.POST) --> após ter adicionado o /titulos
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView salvar(@Validated Titulo titulo, Errors errors, RedirectAttributes attributes) { //O @Validated exige o preenchimento do campo
-		ModelAndView mv = new ModelAndView("CadastroTitulo"); //chama a pagina CadastroTitulo através do mv
+	public String salvar(@Validated Titulo titulo, Errors errors, RedirectAttributes attributes) { //O @Validated exige o preenchimento do campo
+		//ModelAndView mv = new ModelAndView(); //chama a pagina CadastroTitulo através do mv
 		if(errors.hasErrors()){
-			return mv;
+			return CADASTRO_VIEW;
 		}
 		//System.out.println("Salvo com sucesso "+titulo.getDescricao());
 		titulos.save(titulo);
-		ModelAndView mv2 =  new ModelAndView("redirect:/titulos/novo"); //cria a variavel mensagem que está no html através do themeleaf
+		//ModelAndView mv2 =  new ModelAndView("redirect:/titulos/novo"); //cria a variavel mensagem que está no html através do themeleaf
 		attributes.addFlashAttribute("mensagem", "Título salvo com sucesso");
-		return mv2;
+		return "redirect:/titulos/novo";
+	}
+	
+	@RequestMapping("{codigo}")
+	public ModelAndView edicao(@PathVariable Long codigo){
+		System.out.println(" .... codigo recebido "+codigo);
+		ModelAndView mv = new ModelAndView("redirect:/titulos/novo");
+		return mv;
 	}
 	
 	@RequestMapping()
