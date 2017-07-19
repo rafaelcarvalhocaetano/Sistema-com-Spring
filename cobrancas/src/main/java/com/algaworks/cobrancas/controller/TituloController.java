@@ -57,9 +57,8 @@ public class TituloController {
 	}
 	
 	@RequestMapping("{codigo}")
-	public ModelAndView edicao(@PathVariable Long codigo){
-		
-		Titulo titulo = titulos.findOne(codigo); //recupera o id do titulo do banco de dados que está no model
+	public ModelAndView edicao(@PathVariable("codigo") Titulo titulo){		
+		//Titulo titulo = titulos.findOne(codigo); //recupera o id do titulo do banco de dados que está no model
 		ModelAndView mv = new ModelAndView(CADASTRO_VIEW);
 		mv.addObject(titulo);
 		return mv;
