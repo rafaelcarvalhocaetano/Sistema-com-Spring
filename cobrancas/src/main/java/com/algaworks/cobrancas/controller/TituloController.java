@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.algaworks.cobrancas.model.StatusTitulo;
 import com.algaworks.cobrancas.model.Titulo;
@@ -40,16 +41,16 @@ public class TituloController {
 	
 	//@RequestMapping(value = "/titulos", method= RequestMethod.POST) --> após ter adicionado o /titulos
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView salvar(@Validated Titulo titulo, Errors errors) { //O @Validated exige o preenchimento do campo
+	public ModelAndView salvar(@Validated Titulo titulo, Errors errors, RedirectAttributes attributes) { //O @Validated exige o preenchimento do campo
 		ModelAndView mv = new ModelAndView("CadastroTitulo"); //chama a pagina CadastroTitulo através do mv
 		if(errors.hasErrors()){
 			return mv;
 		}
 		//System.out.println("Salvo com sucesso "+titulo.getDescricao());
 		titulos.save(titulo);
-		mv.addObject("mensagem","Título salvo com sucesso"); //cria a variavel mensagem que está no html através do themeleaf
-		
-		return mv;
+		ModelAndView mv2 =  new ModelAndView("redirect:/titulos/novo"); //cria a variavel mensagem que está no html através do themeleaf
+		attributes.addFlashAttribute("mensagem", "Título salvo com sucesso");
+		return mv2;
 	}
 	
 	@RequestMapping()
