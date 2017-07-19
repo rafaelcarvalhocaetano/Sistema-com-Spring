@@ -58,12 +58,14 @@ public class TituloController {
 	
 	@RequestMapping("{codigo}")
 	public ModelAndView edicao(@PathVariable Long codigo){
-		System.out.println(" .... codigo recebido "+codigo);
-		ModelAndView mv = new ModelAndView("redirect:/titulos/novo");
+		
+		Titulo titulo = titulos.findOne(codigo); //recupera o id do titulo do banco de dados que está no model
+		ModelAndView mv = new ModelAndView(CADASTRO_VIEW);
+		mv.addObject(titulo);
 		return mv;
 	}
 	
-	@RequestMapping()
+	@RequestMapping
 	public ModelAndView pesquisar(){
 		List<Titulo> todosTitulos = titulos.findAll();
 		ModelAndView mv = new ModelAndView("PesquisaTitulos");
