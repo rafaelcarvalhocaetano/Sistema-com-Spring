@@ -16,3 +16,8 @@ $('#confirmacaoExclusaoModal').on('show.bs.modal', function(event){
 	modal.find('.modal-body span').html('Tem certeza que deseja excluir o título <strong>' + descricaoTitulo + '</strong>?');
 	
 });
+
+//inicializa o tooltip do bootstrap após a pagina ser inicializada
+$(function name() {
+	$('[rel= "tooltip"]').tooltip();
+});
