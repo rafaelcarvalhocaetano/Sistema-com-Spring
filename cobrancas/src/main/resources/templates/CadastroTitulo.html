@@ -8,10 +8,11 @@
 	<title>Cadastro de título</title>
 </head>
 <section layout:fragment="conteudo">
+	
 	<form class="form-horizontal" method="POST" action="/titulos" th:object="${titulo}">
-		
 		<!-- Incluindo as mensagem que estão no arquivo Mensagem.html -->
-		<div layout:include="Mensagens"></div>
+		<div layout:include="MensagensGeral"></div>
+		<div layout:include="MensagensErro"></div>
 		
 		<div class="panel panel-default">
     		<div class="panel-heading">
