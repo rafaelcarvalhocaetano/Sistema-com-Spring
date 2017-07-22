@@ -27,5 +27,17 @@ $(function name() {
 		thousands: '.',
 		allowZero: true
 	});
+	
+	//ação do click do botao receber
+	$('.js-atualizar-status').on('click', function(event){
+		
+		//informando para não fazer o corportamento padrão do link
+		event.preventDefault();
+		
+		var botaoReceber = $(event.currentTarget);
+		var urlReceber = botaoReceber.attr('href');
+		
+		console.log('url receber', urlReceber);
+	});
 });
 
