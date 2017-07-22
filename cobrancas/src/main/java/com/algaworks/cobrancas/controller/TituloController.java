@@ -13,18 +13,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-
-
-
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.algaworks.cobrancas.model.StatusTitulo;
 import com.algaworks.cobrancas.model.Titulo;
-import com.algaworks.cobrancas.repository.Titulos;
 import com.algaworks.cobrancas.repository.filter.TituloFilter;
 import com.algaworks.cobrancas.service.CadastroTituloService;
 
@@ -34,9 +28,6 @@ import com.algaworks.cobrancas.service.CadastroTituloService;
 public class TituloController {
 	
 	private static final String CADASTRO_VIEW = "CadastroTitulo";
-	
-	@Autowired
-	private Titulos titulos;
 	
 	@Autowired
 	private CadastroTituloService cadastroTituloService; //injeção de dep. da classe service
@@ -83,21 +74,14 @@ public class TituloController {
 	}
 	
 	@RequestMapping
-	public ModelAndView pesquisar(@RequestAttribute("filtro") TituloFilter filtro){
+	public ModelAndView pesquisar(@ModelAttribute("filtro") TituloFilter filtro) {
+		List<Titulo> todosTitulos = cadastroTituloService.filtrar(filtro);
 		
-		//List<Titulo> todosTitulos = titulos.findAll();
-		
-		String descricao = filtro.getDescricao() == null ? "%" : filtro.getDescricao();
-		
-		List<Titulo> todosTitulos = titulos.findByDescricaoContaining(descricao);
 		ModelAndView mv = new ModelAndView("PesquisaTitulos");
-		mv.addObject("titulos", todosTitulos); //disponibiliza uma variavel titulos para ser usado no html listando os itens
-		return mv; 
-		/*
-		 * @RequestParam(defaultValue = "%") String descricao
-		 * Busca um valor
-		 * /
+		mv.addObject("titulos", todosTitulos);
+		return mv;
 	}
+	
 	
 	@RequestMapping(value = "{codigo}", method = RequestMethod.DELETE)
 	public String excluir(@PathVariable Long codigo, RedirectAttributes attributes){
