@@ -5,9 +5,9 @@
 <head>
 <meta charset="UTF-8" />
 <title>Cobranças</title>
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="/css/stile.css" />
-<link rel="stylesheet" type="text/css" href="/css/bootstrap-datepicker.standalone.min.css" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/stile.css}" />
+<link rel="stylesheet" type="text/css" href="@{/css/bootstrap-datepicker.standalone.min.css}"/>
 </head>
 <body>
 	<!-- Manda para as paginas que chamam o Layout o NAVBAR -->
@@ -18,11 +18,11 @@
 		<p>Conteudo Principal</p>
 	</section>
 
-<script src="/js/jquery_min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/cobrancas.js"></script>	
-<script type="text/javascript" src="/js/bootstrap-datepicker.min.js"></script>
-<script type="text/javascript" src="/js/bootstrap-datepicker.pt-BR.min.js"></script>
-<script type="text/javascript" src="/js/jquery.maskMoney.min.js"></script>
+<script th:src="@{/js/jquery_min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/cobrancas.js}"></script>	
+<script th:src="@{/js/bootstrap-datepicker.min.js}"></script>
+<script th:src="@{/js/bootstrap-datepicker.pt-BR.min.js}"></script>
+<script th:src="@{/js/jquery.maskMoney.min.js}"></script>
 </body>
 </html>
