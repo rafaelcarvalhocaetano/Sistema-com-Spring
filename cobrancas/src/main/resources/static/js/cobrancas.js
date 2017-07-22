@@ -20,4 +20,12 @@ $('#confirmacaoExclusaoModal').on('show.bs.modal', function(event){
 //inicializa o tooltip do bootstrap após a pagina ser inicializada
 $(function name() {
 	$('[rel= "tooltip"]').tooltip();
+	
+	//configurando o compo de valor com jquery maskMoney
+	$('.js-currency').maskMoney({
+		decimal: ',',
+		thousands: '.',
+		allowZero: true
+	});
 });
+
