@@ -37,7 +37,15 @@ $(function name() {
 		var botaoReceber = $(event.currentTarget);
 		var urlReceber = botaoReceber.attr('href');
 		
-		console.log('url receber', urlReceber);
-	});
+		
+		var response = $.ajax({
+			url: urlReceber,
+			type: 'PUT'
+		});
+	
+	
+		
+	
+	});	
 });
 
