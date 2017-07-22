@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
@@ -46,14 +47,23 @@ public class TituloController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String salvar(@Validated Titulo titulo, Errors errors, RedirectAttributes attributes) { //O @Validated exige o preenchimento do campo
 		//ModelAndView mv = new ModelAndView(); //chama a pagina CadastroTitulo através do mv
+		
 		if(errors.hasErrors()){
 			return CADASTRO_VIEW;
 		}
-		//System.out.println("Salvo com sucesso "+titulo.getDescricao());
-		titulos.save(titulo);
-		//ModelAndView mv2 =  new ModelAndView("redirect:/titulos/novo"); //cria a variavel mensagem que está no html através do themeleaf
-		attributes.addFlashAttribute("mensagem", "Título salvo com sucesso");
-		return "redirect:/titulos/novo";
+		try {
+			
+			//System.out.println("Salvo com sucesso "+titulo.getDescricao());
+			titulos.save(titulo);
+			//ModelAndView mv2 =  new ModelAndView("redirect:/titulos/novo"); //cria a variavel mensagem que está no html através do themeleaf
+			attributes.addFlashAttribute("mensagem", "Título salvo com sucesso");
+			return "redirect:/titulos/novo";
+			
+		} catch (DataIntegrityViolationException e) {
+			errors.rejectValue("dataVencimento", null, "Data Inválida");
+			return CADASTRO_VIEW;
+		}
+		
 	}
 	
 	@RequestMapping("{codigo}")
