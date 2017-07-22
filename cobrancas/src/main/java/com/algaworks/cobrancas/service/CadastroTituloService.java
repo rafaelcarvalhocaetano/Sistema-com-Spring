@@ -26,14 +26,18 @@ public class CadastroTituloService {
 		}
 		
 	}
+	
 	public void excluir(Long codigo){
 		titulos.delete(codigo);
 	}
 	
-	public void receber(Long codigo){
+	//este method faz a atualização do statustitulo
+	public String receber(Long codigo){
 		Titulo titulo = titulos.findOne(codigo);
 		titulo.setStatus(StatusTitulo.RECEBIDO);
 		titulos.save(titulo);
+		
+		return StatusTitulo.RECEBIDO.getDescricao();
 	}
 
 }
